@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Блог</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<?php include __DIR__ . '/../parts/menu.phtml';?>
+<h2>Посты</h2>
+
+<?php if (!is_null($post)):?>
+    <div>
+        <b><?=htmlspecialchars($post['text'])?></b>
+    </div>
+<?php else:?>
+    Нет поста
+<?php endif;?>
+</body>
+</html>
