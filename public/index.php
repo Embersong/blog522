@@ -1,29 +1,72 @@
 <?php
 
 include __DIR__ . '/../vendor/autoload.php';
-
+include __DIR__ . '/../config/app.php';
 
 $page = $_GET['page'] ?? 'index';
 
 switch ($page) {
     case 'index':
-        include __DIR__ . '/../views/index.phtml';
+        echo render('index');
+        break;
+
+    case 'calc':
+        $result = 0;
+        $arg1 = 0;
+        $arg2 = 0;
+
+        if (!empty($_POST)) {
+            $arg1 = (float)($_POST['arg1'] ?? 0);
+            $arg2 = (float)($_POST['arg2'] ?? 0);
+
+            $result = $arg1 + $arg2;
+        }
+        echo render('calc', [
+            'arg1' => $arg1,
+            'arg2' => $arg2,
+            'result' => $result
+        ]);
+        break;
+
+    case 'categories':
+        $categories = getCategories();
+
+        include VIEWS_PATH . '/categories/index.phtml';
+        break;
+
+    case 'posts-by-category':
+        $id = (int)($_GET['id'] ?? 0);
+
+        $posts = getPostsByCategoryId($id);
+        $categoryName = getCategoryName($id);
+
+        echo render('categories/show', [
+            'posts' => $posts,
+            'categoryName' => $categoryName,
+        ]);
         break;
 
     case 'posts':
         $posts = getPosts();
-        include __DIR__ . '/../views/posts/posts.phtml';
+
+        echo render('posts/index', [
+            'posts' => $posts,
+        ]);
+
         break;
 
     case 'post':
-        $id = $_GET['id'] ?? 0;
+        $id = (int)($_GET['id'] ?? 0);
         $post = getPost($id);
 
-        include __DIR__ . '/../views/posts/post.phtml';
+        echo render('posts/show', [
+            'post' => $post,
+        ]);
         break;
 
     case 'about':
-        include __DIR__ . '/../views/about.phtml';
+        echo render('about');
+
         break;
 
     default:
