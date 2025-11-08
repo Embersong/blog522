@@ -1,5 +1,5 @@
 <h2>Посты</h2>
-
+<a href="/?page=post-create">Создать пост</a><br><br>
 <?php foreach ($posts as $post): ?>
     <div>
         <a href="?page=post&id=<?= htmlspecialchars($post['id']) ?>"><b><?=htmlspecialchars($post['title']) ?></b></a>

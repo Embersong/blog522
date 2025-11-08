@@ -1,5 +1,9 @@
 <h2>Посты</h2>
 
+<?php if ($success === "1"):?>
+    <p style="color:green">Пост создан</p>
+<?php endif;?>
+
 <?php if (!is_null($post)):?>
     <div>
         <b><?=htmlspecialchars($post['text'])?></b>
