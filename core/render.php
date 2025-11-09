@@ -2,6 +2,7 @@
 
 function render(string $page, array $params = []): string
 {
+    getLogger()->debug("params", $params);
     return renderTemplate('layouts/main', [
         'menu' => renderTemplate('parts/menu'),
         'content' => renderTemplate($page, $params)

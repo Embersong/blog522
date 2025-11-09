@@ -2,11 +2,17 @@
     "name": "ember/22",
     "autoload": {
         "files": [
+            "controllers/categoriesControllers/CategoryesController.php",
+            "controllers/postsControllers/PostsController.php",
+            "controllers/CalculateController.php",
+            "controllers/HomeController.php",
             "model/calculator.php",
             "model/posts.php",
             "model/categories.php",
             "core/render.php"
         ]
     },
-    "require": {}
+    "require": {
+        "monolog/monolog": "^3.9"
+    }
 }

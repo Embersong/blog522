@@ -21,6 +21,7 @@ function div(float $x, float $y): float|string
 
 function calculate(float $x, float $y, string $operation): float|string
 {
+    getLogger()->debug($operation);
     return match ($operation) {
         'add' => add($x, $y),
         'sub' => sub($x, $y),
